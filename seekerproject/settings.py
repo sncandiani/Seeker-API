@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Must list app in installed apps to be recognized
+    'seekerapp'
 ]
 
 MIDDLEWARE = [
