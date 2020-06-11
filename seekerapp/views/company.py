@@ -52,3 +52,17 @@ class Companies(ViewSet):
             return Response(serializer.data)
         except Exception as ex: 
             return HttpResponseServerError(ex)
+    # Delete specific company
+    def destroy(self, request, pk=None):
+        try:
+            # Retrieve the specific company that will be deleted
+            company = Company.objects.get(pk=pk)
+            company.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+        # If a user attempts to delete a company that does not exist
+        except company.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
