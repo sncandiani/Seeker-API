@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # An abstract model, that allows transparently retrieving or deleting your objects, without having them deleted from the database
+     'safedelete',
     # Add to installed apps to recognize Django REST API
     'rest_framework',
     # Necessary when using ObtainAuthToken using rest framework
