@@ -27,6 +27,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Necessary to retrieve information based on token in headers
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10
+}
+
+
 
 # Application definition
 
@@ -37,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Add to installed apps to recognize Django REST API
+    'rest_framework',
     # Necessary when using ObtainAuthToken using rest framework
     'rest_framework.authtoken',
     # Must list app in installed apps to be recognized
