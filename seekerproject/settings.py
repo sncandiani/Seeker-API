@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Necessary when using ObtainAuthToken using rest framework
+    'rest_framework.authtoken',
     # Must list app in installed apps to be recognized
     'seekerapp'
 ]

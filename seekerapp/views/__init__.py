@@ -1,0 +1,1 @@
+from .auth.register import register_user
