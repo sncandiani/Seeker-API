@@ -1,6 +1,9 @@
 from django.db import models
 from .company import Company
-class Employee(models.Model): 
+from safedelete.models import SafeDeleteModel
+from safedelete.models import SOFT_DELETE
+class Employee(SafeDeleteModel): 
+    _safedelete_policy = SOFT_DELETE
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
     firstName = models.CharField(max_length=55)
     lastName = models.CharField(max_length=55)
