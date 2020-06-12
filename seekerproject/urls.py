@@ -22,6 +22,7 @@ from seekerapp.views import *
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'companies', Companies, 'company')
+router.register(r'employees', Employees, 'employee')
 
 urlpatterns = [
     path('', include(router.urls)),
