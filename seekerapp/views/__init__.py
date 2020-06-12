@@ -4,3 +4,4 @@ from .auth.login import login_user
 # Other models 
 from .company import Companies
 from .employee import Employees
+from .interview import Interviews
