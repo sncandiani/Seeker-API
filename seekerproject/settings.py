@@ -40,7 +40,6 @@ REST_FRAMEWORK = {
 }
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,24 +48,29 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'safedelete',
     'django.contrib.staticfiles',
     # Add to installed apps to recognize Django REST API
     'rest_framework',
     # Necessary when using ObtainAuthToken using rest framework
     'rest_framework.authtoken',
     # Must list app in installed apps to be recognized
-    'seekerapp'
+    'seekerapp', 
+    'corsheaders'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'seekerproject.urls'
 
