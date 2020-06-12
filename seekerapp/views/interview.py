@@ -59,3 +59,34 @@ class Interviews(ViewSet):
             new_interview, context={'request': request}
         )
         return Response(serializer.data)
+    
+    # Hard delete an interview
+    def delete(self, request, pk=None): 
+        interview = Interview.objects.get(pk=pk)
+        interview.delete()
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
+    # Can update with or without employee 
+    def update(self, request, pk=None): 
+        interview = Interview.objects.get(pk=pk)
+        company = Company.objects.get(pk=request.data["company_id"])
+        interviewType = InterviewType.objects.get(pk=request.data["interviewType_id"])
+        if "employee_id" in request.data:
+            employee = Employee.objects.get(pk=request.data["employee_id"])
+            interview.interviewDate = request.data["interviewDate"]
+            interview.notes = request.data["notes"]
+            interview.company = company 
+            interview.employee = employee 
+            interview.interviewType = interviewType 
+        else: 
+            interview.interviewDate = request.data["interviewDate"]
+            interview.notes = request.data["notes"]
+            interview.company = company 
+            interview.interviewType = interviewType 
+
+        interview.save()
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        
+
