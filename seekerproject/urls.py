@@ -24,6 +24,8 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'companies', Companies, 'company')
 router.register(r'employees', Employees, 'employee')
 router.register(r'interviews', Interviews, 'interview')
+router.register(r'seekers', Seekers, 'seeker')
+router.register(r'users', Users, 'user')
 
 urlpatterns = [
     path('', include(router.urls)),
