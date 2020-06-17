@@ -28,6 +28,6 @@ def register_user(request):
     # Creates association with token and user
     token = Token.objects.create(user=new_user)
     # Django way of converting to JSON
-    data = json.dumps({"token": token.key})
+    data = json.dumps({"valid": True, "token": token.key, "seeker_id": new_user.seeker.id})
 
     return HttpResponse(data, content_type='application/json')

@@ -7,3 +7,4 @@ from .employee import Employees
 from .interview import Interviews
 from .seeker import Seekers
 from .user import Users
+from .interviewType import InterviewTypes
