@@ -84,6 +84,7 @@ class Interviews(ViewSet):
             interview.notes = request.data["notes"]
             interview.company = company 
             interview.interviewType = interviewType 
+            # interview.employee_id = 16
 
         interview.save()
         return Response({}, status=status.HTTP_204_NO_CONTENT)
