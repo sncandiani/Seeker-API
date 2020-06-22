@@ -72,6 +72,7 @@ class Interviews(ViewSet):
         interview = Interview.objects.get(pk=pk)
         company = Company.objects.get(pk=request.data["company_id"])
         interviewType = InterviewType.objects.get(pk=request.data["interviewType_id"])
+
         if "employee_id" in request.data:
             employee = Employee.objects.get(pk=request.data["employee_id"])
             interview.interviewDate = request.data["interviewDate"]
@@ -84,7 +85,7 @@ class Interviews(ViewSet):
             interview.notes = request.data["notes"]
             interview.company = company 
             interview.interviewType = interviewType 
-            # interview.employee_id = 16
+            interview.employee = None
 
         interview.save()
         return Response({}, status=status.HTTP_204_NO_CONTENT)
