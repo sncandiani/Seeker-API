@@ -19,7 +19,7 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
 
 class Applications(ViewSet):
     def list(self, request):
-        applications = Application.objects.all()
+        applications = Application.objects.filter(seeker__user=request.auth.user)
         serializer = ApplicationSerializer(
             applications, many=True, context={'request': request})
         return Response(serializer.data)

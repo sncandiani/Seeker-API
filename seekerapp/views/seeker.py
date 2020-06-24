@@ -12,7 +12,7 @@ class SeekerSerializer(serializers.HyperlinkedModelSerializer):
             view_name='seeker', 
             lookup_field='id'
         )
-        fields = ('id', 'user_id', 'user', 'city', 'state') 
+        fields = ('id', 'user_id', 'user', 'city', 'state', 'seeker_id') 
         depth = 1
 
 class Seekers(ViewSet):
