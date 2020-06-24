@@ -47,11 +47,23 @@ class Applications(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
+     
+    def update(self, request, pk=None): 
+        application = Application.objects.get(pk=pk)
+
+        application.company = request.data["company"]
+        application.position = request.data["position"]
+
+        application.save()
+        
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+
 
     def delete(self, request, pk=None):
         try:
-            application = application.objects.get(pk=pk)
-            Application.delete()
+            application = Application.objects.get(pk=pk)
+            application.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
 
@@ -60,5 +72,6 @@ class Applications(ViewSet):
 
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
   
 

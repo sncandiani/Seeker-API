@@ -16,7 +16,7 @@ class InterviewSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 class Interviews(ViewSet): 
     def list(self, request): 
-        interviews = Interview.objects.all()
+        interviews = Interview.objects.filter(company__seeker__user=request.auth.user)
         serializer = InterviewSerializer(
             interviews, many = True, context={'request': request}
         )
@@ -72,7 +72,7 @@ class Interviews(ViewSet):
         interview = Interview.objects.get(pk=pk)
         company = Company.objects.get(pk=request.data["company_id"])
         interviewType = InterviewType.objects.get(pk=request.data["interviewType_id"])
-
+    # REPETITIVE CODE !!! TO FIX 
         if "employee_id" in request.data:
             employee = Employee.objects.get(pk=request.data["employee_id"])
             interview.interviewDate = request.data["interviewDate"]
