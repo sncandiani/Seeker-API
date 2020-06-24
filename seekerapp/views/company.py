@@ -19,7 +19,7 @@ class Companies(ViewSet):
 
     # List all companies in the Company table
     def list(self, request): 
-        companies = Company.objects.all()
+        companies = Company.objects.filter(seeker__user=request.auth.user)
         serializer = CompanySerializer(companies, many=True, context={'request': request})
         return Response(serializer.data)
 

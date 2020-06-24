@@ -26,6 +26,8 @@ router.register(r'employees', Employees, 'employee')
 router.register(r'interviews', Interviews, 'interview')
 router.register(r'seekers', Seekers, 'seeker')
 router.register(r'users', Users, 'user')
+router.register(r'interviewTypes', InterviewTypes, 'interviewType')
+router.register(r'applications', Applications, 'application')
 
 urlpatterns = [
     path('', include(router.urls)),

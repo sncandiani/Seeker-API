@@ -3,7 +3,7 @@ from .company import Company
 from .employee import Employee
 from .interviewtype import InterviewType
 class Interview(models.Model): 
-    interviewDate = models.DateField()
+    interviewDate = models.DateTimeField()
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
     employee = models.ForeignKey(Employee, on_delete=models.DO_NOTHING, null=True)
     interviewType = models.ForeignKey(InterviewType, on_delete=models.DO_NOTHING)
