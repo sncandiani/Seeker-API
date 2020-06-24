@@ -13,7 +13,7 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
             view_name='application',
             lookup_field='id'
         )
-        fields = ('id', 'company', 'position', 'created_at')
+        fields = ('id', 'company', 'position', 'created_at', 'seeker_id')
         depth = 1
 
 
