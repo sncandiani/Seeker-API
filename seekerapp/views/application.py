@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
 from rest_framework import status
-from seekerapp.models import Application
+from seekerapp.models import Application, Seeker
 
 
 class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
@@ -13,7 +13,7 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
             view_name='application',
             lookup_field='id'
         )
-        fields = ('id', 'company', 'position', 'created_at', 'seeker_id')
+        fields = ('id', 'company', 'position', 'applicationDate', 'seeker_id')
         depth = 1
 
 
@@ -27,8 +27,11 @@ class Applications(ViewSet):
     # Post to Companies table
     def create(self, request):
         new_application = Application()
+        seeker = Seeker.objects.get(user=request.auth.user)
         new_application.company = request.data["company"]
         new_application.position = request.data["position"]
+        new_application.applicationDate = request.data["applicationDate"]
+        new_application.seeker = seeker
         
         new_application.save()
 
@@ -50,8 +53,10 @@ class Applications(ViewSet):
      
     def update(self, request, pk=None): 
         application = Application.objects.get(pk=pk)
-
+        seeker = Seeker.objects.get(user=request.auth.user)
+        application.applicationDate = request.data["applicationDate"]
         application.company = request.data["company"]
+        application.seeker = seeker
         application.position = request.data["position"]
 
         application.save()
