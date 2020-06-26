@@ -30,3 +30,16 @@ class InterviewTypes(ViewSet):
             return Response(serializer.data)
         except Exception as ex: 
             return HttpResponseServerError(ex)
+
+    def delete(self, request, pk=None):
+        try:
+            interviewType = InterviewType.objects.get(pk=pk)
+            interviewType.delete()
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except interviewType.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
