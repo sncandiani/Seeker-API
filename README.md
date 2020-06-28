@@ -35,4 +35,4 @@ python manage.py runserver
 * Url routing
 
 ## Entity Relationship Diagram
-![ERD](seekerERD.png)
+![ERD](SeekerERD.png)
